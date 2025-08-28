@@ -21,8 +21,30 @@ interface MacroResults {
 const MacroCalculator = ({ onLogout }: MacroCalculatorProps) => {
   const [weight, setWeight] = useState('');
   const [activityLevel, setActivityLevel] = useState('');
+  const [objective, setObjective] = useState('');
   const [results, setResults] = useState<MacroResults | null>(null);
   const { toast } = useToast();
+
+  const objectives = {
+    lose: { 
+      calorieMultiplier: 0.85, 
+      proteinMultiplier: 1.1, 
+      carbMultiplier: 0.8, 
+      label: 'Perder peso' 
+    },
+    maintain: { 
+      calorieMultiplier: 1.0, 
+      proteinMultiplier: 1.0, 
+      carbMultiplier: 1.0, 
+      label: 'Manter peso' 
+    },
+    gain: { 
+      calorieMultiplier: 1.15, 
+      proteinMultiplier: 1.0, 
+      carbMultiplier: 1.2, 
+      label: 'Ganhar peso/massa muscular' 
+    }
+  };
 
   const activityMultipliers = {
     sedentary: { protein: 1.6, carbs: 3, label: 'Sedentário (pouco ou nenhum exercício)' },
@@ -50,7 +72,7 @@ const MacroCalculator = ({ onLogout }: MacroCalculatorProps) => {
   ];
 
   const calculateMacros = () => {
-    if (!weight || !activityLevel) {
+    if (!weight || !activityLevel || !objective) {
       toast({
         title: "Dados incompletos",
         description: "Por favor, preencha todos os campos.",
@@ -70,11 +92,16 @@ const MacroCalculator = ({ onLogout }: MacroCalculatorProps) => {
     }
 
     const multiplier = activityMultipliers[activityLevel as keyof typeof activityMultipliers];
+    const objectiveData = objectives[objective as keyof typeof objectives];
     
-    // Cálculos baseados nas diretrizes nutricionais
-    const protein = weightNum * multiplier.protein;
-    const carbs = weightNum * multiplier.carbs;
-    const calories = (protein * 4) + (carbs * 4) + (weightNum * 1 * 9); // Assumindo 1g/kg de gordura
+    // Cálculos baseados nas diretrizes nutricionais e objetivo
+    const baseProtein = weightNum * multiplier.protein * objectiveData.proteinMultiplier;
+    const baseCarbs = weightNum * multiplier.carbs * objectiveData.carbMultiplier;
+    const baseFat = weightNum * 1; // 1g/kg de gordura como base
+    
+    const protein = baseProtein;
+    const carbs = baseCarbs;
+    const calories = ((protein * 4) + (carbs * 4) + (baseFat * 9)) * objectiveData.calorieMultiplier;
 
     const proteinRange = `${(weightNum * 1.6).toFixed(0)}-${(weightNum * 2.2).toFixed(0)}g`;
     const carbsRange = `${(weightNum * 3).toFixed(0)}-${(weightNum * 5).toFixed(0)}g`;
@@ -97,6 +124,7 @@ const MacroCalculator = ({ onLogout }: MacroCalculatorProps) => {
   const resetCalculation = () => {
     setWeight('');
     setActivityLevel('');
+    setObjective('');
     setResults(null);
   };
 
@@ -154,6 +182,24 @@ const MacroCalculator = ({ onLogout }: MacroCalculatorProps) => {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">
+                  Objetivo
+                </label>
+                <Select value={objective} onValueChange={setObjective}>
+                  <SelectTrigger className="bg-background border-border">
+                    <SelectValue placeholder="Selecione seu objetivo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(objectives).map(([key, value]) => (
+                      <SelectItem key={key} value={key}>
+                        {value.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">
                   Nível de atividade física
                 </label>
                 <Select value={activityLevel} onValueChange={setActivityLevel}>
@@ -199,7 +245,7 @@ const MacroCalculator = ({ onLogout }: MacroCalculatorProps) => {
                   <span>Seus Macronutrientes</span>
                 </CardTitle>
                 <CardDescription>
-                  Valores calculados para ganho de massa muscular
+                  Valores calculados baseados no seu objetivo
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
