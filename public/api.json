@@ -1,0 +1,28 @@
+{
+    "foods": [
+      { "name": "Peito de Frango (grelhado)", "protein": 31, "carbs": 0, "amount": "100g", "type": "protein", "suitability": ["lose", "maintain", "gain"] },
+      { "name": "Salmão (assado)", "protein": 25, "carbs": 0, "amount": "100g", "type": "protein", "suitability": ["lose", "maintain", "gain"] },
+      { "name": "Ovos (cozidos)", "protein": 13, "carbs": 1.1, "amount": "100g (2 ovos grandes)", "type": "protein", "suitability": ["lose", "maintain", "gain"] },
+      { "name": "Carne Vermelha Magra (patinho, grelhado)", "protein": 36, "carbs": 0, "amount": "100g", "type": "protein", "suitability": ["maintain", "gain"] },
+      { "name": "Tilápia (assada)", "protein": 26, "carbs": 0, "amount": "100g", "type": "protein", "suitability": ["lose", "maintain"] },
+      { "name": "Queijo Cottage (0% gordura)", "protein": 11, "carbs": 3.4, "amount": "100g", "type": "protein", "suitability": ["lose", "maintain"] },
+      { "name": "Iogurte Grego (sem gordura)", "protein": 10, "carbs": 4, "amount": "100g", "type": "protein", "suitability": ["lose", "maintain"] },
+      { "name": "Tofu", "protein": 8, "carbs": 1.9, "amount": "100g", "type": "protein", "suitability": ["lose", "maintain", "gain"] },
+      { "name": "Lentilhas (cozidas)", "protein": 9, "carbs": 20, "amount": "100g", "type": "protein", "suitability": ["maintain", "gain"] },
+      { "name": "Grão de Bico (cozido)", "protein": 8.9, "carbs": 27, "amount": "100g", "type": "protein", "suitability": ["maintain", "gain"] },
+      { "name": "Whey Protein Isolado", "protein": 25, "carbs": 1, "amount": "30g", "type": "protein", "suitability": ["lose", "maintain", "gain"] },
+      { "name": "Atum (em água)", "protein": 29, "carbs": 0, "amount": "100g", "type": "protein", "suitability": ["lose", "maintain"] },
+      { "name": "Feijão Preto (cozido)", "protein": 9, "carbs": 24, "amount": "100g", "type": "protein", "suitability": ["maintain", "gain"] },
+      { "name": "Arroz Integral (cozido)", "protein": 2.6, "carbs": 23, "amount": "100g", "type": "carb", "suitability": ["maintain", "gain"] },
+      { "name": "Batata Doce (cozida)", "protein": 1.6, "carbs": 20, "amount": "100g", "type": "carb", "suitability": ["lose", "maintain", "gain"] },
+      { "name": "Aveia em Flocos", "protein": 17, "carbs": 66, "amount": "100g", "type": "carb", "suitability": ["lose", "maintain", "gain"] },
+      { "name": "Banana", "protein": 1.1, "carbs": 23, "amount": "100g (1 média)", "type": "carb", "suitability": ["maintain", "gain"] },
+      { "name": "Pão Integral", "protein": 13, "carbs": 41, "amount": "100g", "type": "carb", "suitability": ["maintain", "gain"] },
+      { "name": "Macarrão Integral (cozido)", "protein": 5, "carbs": 27, "amount": "100g", "type": "carb", "suitability": ["maintain", "gain"] },
+      { "name": "Quinoa (cozida)", "protein": 4.4, "carbs": 21, "amount": "100g", "type": "carb", "suitability": ["lose", "maintain", "gain"] },
+      { "name": "Mandioca (cozida)", "protein": 1.4, "carbs": 38, "amount": "100g", "type": "carb", "suitability": ["gain"] },
+      { "name": "Maçã", "protein": 0.3, "carbs": 14, "amount": "100g (1 média)", "type": "carb", "suitability": ["lose", "maintain"] },
+      { "name": "Cuscuz", "protein": 3.8, "carbs": 23, "amount": "100g", "type": "carb", "suitability": ["gain"] },
+      { "name": "Abóbora Cabotian (cozida)", "protein": 1, "carbs": 9, "amount": "100g", "type": "carb", "suitability": ["lose", "maintain"] }
+    ]
+  }
